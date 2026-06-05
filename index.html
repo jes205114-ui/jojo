@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>조은숙 | 충청투데이</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --navy: #1a2a4f;
+      --accent: #c8102e;
+      --gold: #d4af37;
+      --bg: #f7f6f3;
+      --text: #2b2b2b;
+      --muted: #6b6b6b;
+    }
+
+    body {
+      font-family: "Noto Sans KR", "Malgun Gothic", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 24px;
+      background:
+        linear-gradient(135deg, rgba(26,42,79,0.95) 0%, rgba(26,42,79,0.85) 100%);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 28px);
+      pointer-events: none;
+    }
+
+    .masthead {
+      font-size: 0.85rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+      border: 1px solid rgba(212,175,55,0.5);
+      padding: 8px 20px;
+      border-radius: 2px;
+      z-index: 1;
+    }
+
+    .avatar {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--gold), #b8941f);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 28px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 8vw, 4.4rem);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      z-index: 1;
+    }
+
+    .hero .role {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.8);
+      margin-top: 12px;
+      z-index: 1;
+    }
+
+    .tagline {
+      margin-top: 32px;
+      font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+      font-weight: 300;
+      color: #fff;
+      max-width: 600px;
+      z-index: 1;
+      position: relative;
+    }
+
+    .tagline::before,
+    .tagline::after {
+      content: "“";
+      color: var(--gold);
+      font-size: 2rem;
+      font-family: serif;
+      vertical-align: -0.3em;
+      margin: 0 6px;
+    }
+    .tagline::after { content: "”"; }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 32px;
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      color: rgba(255,255,255,0.6);
+      animation: bob 2s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+
+    /* ===== Content ===== */
+    .content {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .section {
+      margin-bottom: 64px;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 16px;
+      position: relative;
+      padding-left: 36px;
+    }
+
+    .section-label::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 26px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    .section h2 {
+      font-size: 1.8rem;
+      color: var(--navy);
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .section p {
+      color: var(--text);
+      font-size: 1.05rem;
+    }
+
+    /* ===== Values ===== */
+    .values {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .value-card {
+      background: #fff;
+      border: 1px solid #e8e6e1;
+      border-radius: 8px;
+      padding: 28px 24px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .value-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(26,42,79,0.12);
+    }
+
+    .value-card .num {
+      font-size: 0.85rem;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+
+    .value-card h3 {
+      font-size: 1.15rem;
+      color: var(--navy);
+      margin: 10px 0 8px;
+    }
+
+    .value-card p {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    /* ===== Articles (기사 리스트 추가) ===== */
+    .article-list {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .article-item {
+      background: #fff;
+      border: 1px solid #e8e6e1;
+      border-radius: 8px;
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: all 0.2s ease;
+    }
+
+    .article-item:hover {
+      border-color: var(--navy);
+      transform: translateX(4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .article-category {
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .article-title {
+      font-size: 1.1rem;
+      color: var(--navy);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .article-desc {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .link-list {
+      margin-top: 24px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .link-item {
+      display: block;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #e8e6e1;
+      background: #fff;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .link-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(26,42,79,0.1);
+      border-color: var(--navy);
+    }
+
+    .link-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .link-desc {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    /* ===== Quote band ===== */
+    .quote-band {
+      background: var(--navy);
+      color: #fff;
+      text-align: center;
+      padding: 64px 24px;
+    }
+
+    .quote-band p {
+      max-width: 620px;
+      margin: 0 auto;
+      font-size: clamp(1.3rem, 4vw, 1.8rem);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .quote-band .author {
+      margin-top: 24px;
+      font-size: 0.95rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+
+    /* ===== Contact ===== */
+    .contact {
+      text-align: center;
+      padding: 56px 24px;
+      background: var(--bg);
+    }
+
+    .contact .name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .contact .org {
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .contact .area {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 6px 16px;
+      background: rgba(200,16,46,0.08);
+      border: 1px solid rgba(200,16,46,0.25);
+      border-radius: 20px;
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .contact .email {
+      display: block;
+      margin-top: 18px;
+      font-size: 1.05rem;
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .contact .email:hover {
+      color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: #ece9e3;
+    }
+
+    @media (max-width: 480px) {
+      .content { padding: 56px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="masthead">충청투데이 · CHUNGCHEONG TODAY</div>
+    <div class="avatar">조</div>
+    <h1>조은숙</h1>
+    <p class="role">기자 · 충청투데이 충북본부 · 진천·청주 담당</p>
+    <p class="tagline">현장의 생생한 목소리로 지역의 내일을 기록합니다</p>
+    <div class="scroll-cue">SCROLL ↓</div>
+  </header>
+
+  <!-- About -->
+  <main class="content">
+    <section class="section">
+      <span class="section-label">About</span>
+      <h2>소개</h2>
+      <p>
+        안녕하세요, 충청투데이 기자 조은숙입니다.
+        저는 충북 진천군과 청주시 지역을 중심으로 발로 뛰며, 우리 이웃들의 소박한 삶과 지역 경제의 생생한 현장을 지면에 담고 있습니다.
+        대형 마트의 진출 속에서 전통시장을 지켜가는 상인들의 이야기, 공동체 중심의 협력 돌봄 프로그램 등 우리 삶터의 작지만 의미 있는 변화들을 진솔하게 기록하는 일을 가장 큰 보람으로 여깁니다.
+      </p>
+    </section>
+
+    <!-- Articles Section (새로 추가된 기사 링크 영역) -->
+    <section class="section">
+      <span class="section-label">Articles</span>
+      <h2>주요 보도 기사</h2>
+      <div class="article-list">
+        <a href="https://www.cctoday.co.kr/news/articleView.html?idxno=123456" target="_blank" class="article-item">
+          <div class="article-category">지역 경제</div>
+          <div class="article-title">대형 유통점 진출과 진천 전통시장의 상생 과제</div>
+          <div class="article-desc">지역 상권 분석 및 전통시장 활성화를 위한 대안 모색 기획 리포트.</div>
+        </a>
+        <a href="https://www.cctoday.co.kr/news/articleView.html?idxno=654321" target="_blank" class="article-item">
+          <div class="article-category">공동체·복지</div>
+          <div class="article-title">진천군 협력 돌봄 프로그램 '가치봄' 2주년 현장을 가다</div>
+          <div class="article-desc">Duchon 어린이집 등 지역 협력 보육 모델의 성과와 어린이날 행사 동행 취재.</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <span class="section-label">Links</span>
+      <h2>자주 쓰는 링크</h2>
+      <div class="link-list">
+        <a href="https://www.cctoday.co.kr" target="_blank" class="link-item">
+          <div class="link-title">충청투데이 메인</div>
+          <div class="link-desc">충청투데이 공식 홈페이지로 바로 이동합니다.</div>
+        </a>
+        <a href="https://www.cctoday.co.kr/news/articleView.html?idxno=123456" target="_blank" class="link-item">
+          <div class="link-title">최근 보도 기사</div>
+          <div class="link-desc">현재 페이지에서 가장 중요한 기사 링크를 쉽게 추가하고 관리할 수 있습니다.</div>
+        </a>
+      </div>
+      <!-- 링크를 자유롭게 추가하려면 아래에 동일한 구조의 <a> 요소를 계속 추가하세요. -->
+    </section>
+
+    <section class="section">
+      <span class="section-label">What I Do</span>
+      <h2>취재 원칙</h2>
+      <div class="values">
+        <div class="value-card">
+          <span class="num">01</span>
+          <h3>현장 중심 취재</h3>
+          <p>탁상공론을 배제하고, 모든 정답은 오직 현장에 있다는 믿음으로 직접 확인한 사실을 기록합니다.</p>
+        </div>
+        <div class="value-card">
+          <span class="num">02</span>
+          <h3>지역 밀착 리포트</h3>
+          <p>충청 지역의 구석구석을 살피며 소외되는 동네가 없도록 따뜻한 시선으로 밀착 취재합니다.</p>
+        </div>
+        <div class="value-card">
+          <span class="num">03</span>
+          <h3>사람 향하는 시선</h3>
+          <p>단순한 수치와 정량적 사건을 넘어, 그 이면에 숨겨진 사람들의 삶과 애환에 집중합니다.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Quote -->
+  <section class="quote-band">
+    <p>가장 가까운 곳의 이야기가, 가장 큰 울림이 됩니다.</p>
+    <div class="author">— 조은숙, 충청투데이</div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact">
+    <span class="section-label" style="padding-left:0;">Contact</span>
+    <div class="name">조은숙 기자</div>
+    <div class="org">충청투데이 편집국 충북본부</div>
+    <span class="area">📍 충북 진천·청주 담당</span>
+    <a class="email" href="mailto:silvertrick@naver.com">silvertrick@naver.com</a>
+  </section>
+
+  <footer>
+    © 2026 조은숙 · 충청투데이. 지역의 이야기를 전합니다.
+  </footer>
+
+</body>
+</html>
